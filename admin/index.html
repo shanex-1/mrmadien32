@@ -6,7 +6,10 @@
   <title>لوحة التحكم والإدارة</title>
 </head>
 <body>
-  <!-- تضمين سكربت Decap CMS -->
   <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+  <script>
+    // إيقاف أي محاولة للاتصال بـ Netlify Identity تلقائياً
+    window.CMS_MANUAL_INIT = false;
+  </script>
 </body>
 </html>
