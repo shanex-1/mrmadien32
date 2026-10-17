@@ -2,7 +2,7 @@ backend:
   name: github
   repo: shanex-1/mrmadien32
   branch: main
-  base_url: https://auth.decapcms.org
+  auth_type: implicit
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
