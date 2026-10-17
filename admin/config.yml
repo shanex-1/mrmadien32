@@ -1,0 +1,16 @@
+backend:
+  name: github
+  repo: shanex-1/mrmadien32
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+collections:
+  - name: "lessons"
+    label: "الدروس والمحتوى"
+    folder: "content/lessons"
+    create: true
+    fields:
+      - { label: "العنوان", name: "title", widget: "string" }
+      - { label: "المحتوى", name: "body", widget: "markdown" }
