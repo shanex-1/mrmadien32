@@ -2,8 +2,8 @@ backend:
   name: github
   repo: shanex-1/mrmadien32
   branch: main
-  base_url: https://decap-cms-oauth-provider.vercel.app
-  auth_endpoint: auth
+  base_url: https://sveltia-cms-auth.sveltia.dev
+  auth_endpoint: /authenticate
 
 media_folder: "images/uploads"
 public_folder: "/images/uploads"
