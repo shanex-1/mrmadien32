@@ -835,7 +835,7 @@
 
       handleAdminLogin(e) {
         e.preventDefault();
-        const pass = document.getElementById('admin-login-pass').value;
+        const pass = document.getElementById('admin-login-pass').value.trim();
         if (pass === this.data.adminPass) {
           this.currentUser = { role: 'admin', name: 'المعلم' };
           this.closeAdminAuthModal();
@@ -847,9 +847,9 @@
           this.renderAdminStudentsTable();
           this.renderAdminQuestionsList();
           this.showView('admin-dashboard');
-          this.showToast("تم الدخول للوحة التحكم", "success");
+          this.showToast("تم تسجيل الدخول بنجاح كأدمن", "success");
         } else {
-          this.showToast("كلمة مرور المعلم خاطئة!", "error");
+          this.showToast("كلمة المرور غير صحيحة", "error");
         }
       }
 
