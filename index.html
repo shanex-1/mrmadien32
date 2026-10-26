@@ -531,16 +531,40 @@
         this.initUI();
       }
 
-      loadData() {
-        const stored = localStorage.getItem('edu_app_data_v5');
-        if (!stored) return DEFAULT_DATA;
-        try { return { ...DEFAULT_DATA, ...JSON.parse(stored) }; } catch(e) { return DEFAULT_DATA; }
+      async loadData() {
+        try {
+          const response = await fetch('https://bzxchenbdronpybdaysd.supabase.co/rest/v1/app_data?select=*', {
+            headers: {
+              'apikey': 'sb_publishable_CWzs-zxIW29SbIpXzr7gkA_8iE8TZin',
+              'Authorization': 'Bearer sb_publishable_CWzs-zxIW29SbIpXzr7gkA_8iE8TZin'
+            }
+          });
+          const rows = await response.json();
+          if (rows && rows.length > 0 && rows[0].payload) {
+            return { ...DEFAULT_DATA, ...rows[0].payload };
+          }
+        } catch (e) {
+          console.error("خطأ في جلب البيانات من سوبابيس:", e);
+        }
+        return DEFAULT_DATA;
       }
 
-      saveData() {
-        localStorage.setItem('edu_app_data_v5', JSON.stringify(this.data));
+      async saveData() {
+        try {
+          await fetch('https://bzxchenbdronpybdaysd.supabase.co/rest/v1/app_data', {
+            method: 'POST',
+            headers: {
+              'apikey': 'sb_publishable_CWzs-zxIW29SbIpXzr7gkA_8iE8TZin',
+              'Authorization': 'Bearer sb_publishable_CWzs-zxIW29SbIpX...',
+              'Content-Type': 'application/json',
+              'Prefer': 'resolution=merge-duplicates'
+            },
+            body: JSON.stringify({ id: 1, payload: this.data })
+          });
+        } catch (e) {
+          console.error("خطأ في حفظ البيانات على سوبابيس:", e);
+        }
       }
-
       showToast(msg, type = "info") {
         const container = document.getElementById('toast-container');
         const toast = document.createElement('div');
