@@ -560,10 +560,41 @@
             method: 'POST',
             headers: {
               'apikey': 'sb_publishable_CWzs-zxIW29SbIpXzr7gkA_8iE8TZin',
-              'Authorization': 'Bearer sb_publishable_CWzs-zxIW29SbIpX...',
+              'Authorization': 'Bearer sb_publishable_CWzs-zxIW29SbIpXzr7gkA_8iE8TZin',
               'Content-Type': 'application/json',
               'Prefer': 'resolution=merge-duplicates'
             },
+         async uploadAndSaveVideo(file, videoMetadata) {
+        try {
+          const fileName = Date.now() + '_' + file.name;
+          const uploadResponse = await fetch(`https://bzxchenbdronpybdaysd.supabase.co/storage/v1/object/videos/${fileName}`, {
+            method: 'POST',
+            headers: {
+              'apikey': 'sb_publishable_CWzs-zxIW29SbIpXzr7gk4_8iE8TZin',
+              'Authorization': 'Bearer sb_publishable_CWzs-zxIW29SbIpXzr7gk4_8iE8TZin',
+              'Content-Type': file.type
+            },
+            body: file
+          });
+
+          if (!uploadResponse.ok) {
+            throw new Error("فشل رفع ملف الفيديو إلى السحابة");
+          }
+
+          const publicUrl = `https://bzxchenbdronpybdaysd.supabase.co/storage/v1/object/public/videos/${fileName}`;
+          
+          videoMetadata.videoUrl = publicUrl;
+          if (!this.data.videos) this.data.videos = [];
+          this.data.videos.push(videoMetadata);
+
+          await this.saveData();
+          alert("تم رفع الفيديو وحفظه بنجاح لجميع الطلاب!");
+
+        } catch (e) {
+          console.error("خطأ أثناء رفع الفيديو:", e);
+          alert("حدث خطأ أثناء رفع الفيديو، تأكد من حجم الملف.");
+        }
+      }
             body: JSON.stringify({ id: 1, payload: this.data })
           });
         } catch (e) {
