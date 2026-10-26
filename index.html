@@ -590,12 +590,14 @@
           await this.saveData();
           alert("تم رفع الفيديو وحفظه بنجاح لجميع الطلاب!");
 
-        } catch (e) {
+        }
+        catch (e) {
           console.error("خطأ أثناء رفع الفيديو:", e);
           alert("حدث خطأ أثناء رفع الفيديو، تأكد من حجم الملف.");
         }
          }
-      showToast(msg, type = "info") {
+            
+     showToast(msg, type = "info") {
         const container = document.getElementById('toast-container');
         const toast = document.createElement('div');
         const bgClass = type === 'error' ? 'bg-rose-600' : (type === 'success' ? 'bg-emerald-600' : 'bg-indigo-600');
@@ -604,7 +606,7 @@
         container.appendChild(toast);
         setTimeout(() => toast.classList.remove('translate-y-2', 'opacity-0'), 10);
         setTimeout(() => { toast.classList.add('opacity-0'); setTimeout(() => toast.remove(), 300); }, 3000);
-      },
+      }
 
       initUI() {
         this.checkAnnouncement();
