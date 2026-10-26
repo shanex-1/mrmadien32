@@ -523,11 +523,16 @@
 
     class EducationalApp {
       constructor() {
-        this.data = this.loadData();
+        this.data = DEFAULT_DATA;
         this.currentUser = null;
         this.selectedSubject = null;
         this.selectedFolder = null;
         this.selectedVideo = null;
+        this.initAsyncApp();
+      }
+
+      async initAsyncApp() {
+        this.data = await this.loadData();
         this.initUI();
       }
 
