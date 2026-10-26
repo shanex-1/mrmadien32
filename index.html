@@ -595,12 +595,6 @@
           alert("حدث خطأ أثناء رفع الفيديو، تأكد من حجم الملف.");
         }
       }
-            body: JSON.stringify({ id: 1, payload: this.data })
-          });
-        } catch (e) {
-          console.error("خطأ في حفظ البيانات على سوبابيس:", e);
-        }
-      }
       showToast(msg, type = "info") {
         const container = document.getElementById('toast-container');
         const toast = document.createElement('div');
